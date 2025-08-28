@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/jpeg" href="/clientes/taeda/images/icono_taeda.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grupo Taeda - Gestión Inmobiliaria</title>
+    <script>
+      // Script que se ejecuta en tiempo de carga para gestionar redirecciones
+      (function() {
+        // Si estamos en un 404, o en una ruta incorrecta, redirigir a la aplicación principal
+        const path = window.location.pathname;
+        const href = window.location.href;
+        
+        // Comprobar si la URL incluye /taeda/ pero no está correctamente formateada
+        if (path.includes('/taeda/') && 
+            (!path.includes('/clientes/taeda/') || 
+             path.split('/').length > 4)) {
+          
+          // Si hay una ruta específica después de /taeda/
+          const baseHref = href.split('/taeda/')[0] + '/taeda/';
+          console.log('Redirigiendo a:', baseHref);
+          
+          // Usar history API para no crear una nueva entrada en el historial
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, '', baseHref);
+            // Recargar para asegurar que la app se carga correctamente
+            window.location.reload();
+          } else {
+            window.location.href = baseHref;
+          }
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/clientes/taeda/assets/index-B4ZtJcev.js"></script>
+    <link rel="stylesheet" crossorigin href="/clientes/taeda/assets/index-DFRECF0F.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html> 

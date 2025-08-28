@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grupo Taeda</title>
+  <link rel="stylesheet" href="./critical.css">
+  <link rel="stylesheet" href="./next/static/css/app.css">
+  <script>
+    // Redirigir a la versión correcta si es necesario
+    window.onload = function() {
+      if (!document.querySelector('style[data-next]')) {
+        window.location.href = './index.html';
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="loading" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <p>Cargando aplicación...</p>
+  </div>
+</body>
+</html> 

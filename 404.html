@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redireccionando...</title>
+  <script>
+    // Redirección directa a la página principal con la ruta actual
+    var path = window.location.pathname;
+    
+    // Comprueba si la ruta ya contiene /clientes/taeda/
+    if (path.indexOf('/clientes/taeda/') === 0) {
+      // Ya estamos en la ruta correcta, solo necesitamos enviar al index
+      window.location.href = '/clientes/taeda/';
+    } else {
+      // Obtener la ruta después de /clientes/taeda/ si existe
+      var segments = path.split('/');
+      var indexTaeda = -1;
+      
+      for (var i = 0; i < segments.length; i++) {
+        if (segments[i] === 'taeda') {
+          indexTaeda = i;
+          break;
+        }
+      }
+      
+      if (indexTaeda > -1) {
+        // Reconstruir la URL para la redirección
+        window.location.href = '/clientes/taeda/';
+      } else {
+        // Si no encontramos taeda en la ruta, redirigir a la raíz
+        window.location.href = '/clientes/taeda/';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Redireccionando...</h1>
+  <p>Si no eres redireccionado automáticamente, <a href="/clientes/taeda/">haz clic aquí</a>.</p>
+</body>
+</html> 

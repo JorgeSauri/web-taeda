@@ -1,0 +1,57 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /clientes/taeda/
+  
+  # Primero, intentar servir el archivo o directorio solicitado directamente si existe
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+  
+  # Asegurar que los archivos estáticos se sirvan correctamente
+  RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*)$ /clientes/taeda/$1 [L]
+  
+  # Para todas las demás rutas, redirigir a index.html
+  RewriteRule ^(.*)$ /clientes/taeda/index.html [L]
+</IfModule>
+
+# Para evitar errores 404 en rutas directas, forzar la redirección a index.html
+ErrorDocument 404 /clientes/taeda/index.html
+
+# Configuración de MIME types
+<IfModule mod_mime.c>
+  AddType application/javascript .js
+  AddType text/css .css
+</IfModule>
+
+# Habilitar CORS si es necesario
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+</IfModule>
+
+# Caché para archivos estáticos
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # Imágenes
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  
+  # Video
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType video/mpeg "access plus 1 year"
+  
+  # CSS, JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  
+  # Otros
+  ExpiresByType application/pdf "access plus 1 month"
+  ExpiresByType application/x-shockwave-flash "access plus 1 month"
+</IfModule> 
