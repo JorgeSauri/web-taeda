@@ -1,0 +1,11 @@
+# Archivos y directorios a ignorar durante el despliegue
+.git
+.gitignore
+README.md
+.DS_Store
+Thumbs.db
+
+# Archivos de desarrollo que no se necesitan en producción
+*.log
+*.tmp
+*.temp
